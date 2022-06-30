@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+.container {
+  padding: 0;
+  margin: 0;
+  background: url("../../images/login-bg.png") center center/cover no-repeat;
+  height: 90vh;
+  width: 100%;
+  .mainRow {
+    width: 50%;
+    float: right;
+    padding: 12rem 0rem 0 13rem;
+    .alreadyMember {
+      color: #afc3de;
+      font-family: "Poppins-Medium";
+      margin-bottom: 2rem;
+    }
+    .getStarted{
+      font-size: 2rem;
+      color: #103e5b;
+      font-family: "Poppins-Medium";
+    }
+    .formRow {
+      padding: 2rem 0 0 0;
+      .form {
+        .formGroup {
+          margin-bottom: 1rem;
+          .formLabel {
+            font-family: "Poppins-Medium";
+          }
+          .formControl {
+            border: none;
+            border-bottom: 3px solid #103e5b;
+            padding-left: 0px;
+            border-radius: 0px;
+            font-family: "Poppins-Regular";
+            &:focus {
+              box-shadow: none;
+            }
+          }
+        }
+        .button {
+          width: 100%;
+          background-color: #103e5b;
+          padding: 0.7rem;
+          font-family: "Poppins-Medium";
+        }
+      }
+    }
+  }
+}
