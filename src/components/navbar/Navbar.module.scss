@@ -1,11 +1,19 @@
 .navRow {
-  padding: 1rem 0rem 1rem 1rem;
-  .column {
-    color:#103e5b;
+  padding: 1rem 2rem 1rem 2rem;
+  .column1 {
     font-size: 1.5rem;
     font-family: "Poppins-SemiBold";
     .span {
-      color: #fff;
+      margin: 0 0.5rem;
+    }
+  }
+  .column2{
+    .button{
+      float: right;
+      background-color: #a5c3de;
+      color: #103e10;
+      font-family: "Poppins-SemiBold";
+      padding: 0.4rem 2rem;
     }
   }
 }

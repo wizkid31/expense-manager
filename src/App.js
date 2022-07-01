@@ -4,8 +4,9 @@ import AppStyle from "./App.module.scss";
 import { Route, Routes } from "react-router-dom";
 
 //component import
-import Signup from "./resources/pages/signup/Signup";
-import Login from "./resources/pages/login/Login";
+import Signup from "./pages/signup/Signup";
+import Login from "./pages/login/Login";
+import Landing from "./pages/landing/Landing";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Landing/>} />
       </Routes>
     </div>
   );

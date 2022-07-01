@@ -1,0 +1,29 @@
+.container {
+  background: url("../../resources/images/landing-bg.png") center center/cover
+    no-repeat;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  .quoteRow {
+    width: 70%;
+    font-family: "Poppins-SemiBold";
+    color: #103e5b;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    padding: 12rem 25rem 10rem 0rem;
+    margin: auto;
+    .quote {
+      text-align: left;
+    }
+    .joinNowRow{
+      .button{
+        background-color: #103e5b !important;
+        font-family: "Poppins-Medium";
+        padding: 0.5rem 0rem;
+        border-radius: 10px;
+        width: 50%;
+      }
+    }
+  }
+}

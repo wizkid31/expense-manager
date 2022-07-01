@@ -9,18 +9,17 @@ import LoginStyles from "./Login.module.scss";
 //bootstrap import
 import Form from "react-bootstrap/Form";
 import { Container, Button, Row } from "react-bootstrap";
-import Navbar from "../../../components/navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 
 const Login = () => {
-  const [userDetail, setUserDetail] = useState({
-    formBasicEmail: "",
-    formBasicName: "",
-    formBasicPassword: "",
+  const [userDetails, setUserDetails] = useState({
+    formEmail: "",
+    formPassword: "",
   });
 
   const handleFormChange = (e, value) => {
-    setUserDetail({
-      ...userDetail,
+    setUserDetails({
+      ...userDetails,
       [e.target.name]: value || e.target.value,
     });
   };
@@ -28,19 +27,17 @@ const Login = () => {
   return (
     <>
       <Row>
-        <Navbar navBg="#a5c3de" />
+        <Navbar navBg="#a5c3de" col0="#103e5b" col1="#fff" />
       </Row>
       <Container className={LoginStyles.container}>
         <Row className={LoginStyles.mainRow}>
-          <Row className={LoginStyles.alreadyMember}>
-            Not a member? Sign up
-          </Row>
+          <Row className={LoginStyles.alreadyMember}>Not a member? Sign up</Row>
           <Row className={LoginStyles.getStarted}>Log In</Row>
           <Row className={LoginStyles.formRow}>
             <Form className={LoginStyles.form}>
               <Form.Group
                 className={LoginStyles.formGroup}
-                controlId="formBasicEmail"
+                controlId="formEmail"
               >
                 <Form.Label className={LoginStyles.formLabel}>
                   Email address
@@ -50,11 +47,12 @@ const Login = () => {
                   type="email"
                   placeholder="Enter email"
                   onChange={handleFormChange}
+                  value={userDetails.formEmail}
                 />
               </Form.Group>
               <Form.Group
                 className={LoginStyles.formGroup}
-                controlId="formBasicPassword"
+                controlId="formPassword"
               >
                 <Form.Label className={LoginStyles.formLabel}>
                   Password
@@ -63,6 +61,8 @@ const Login = () => {
                   className={LoginStyles.formControl}
                   type="password"
                   placeholder="Password"
+                  onChange={handleFormChange}
+                  value={userDetails.formPassword}
                 />
               </Form.Group>
               <Button

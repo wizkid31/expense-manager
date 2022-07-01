@@ -9,11 +9,11 @@ import signupStyles from "./Signup.module.scss";
 //bootstrap import
 import Form from "react-bootstrap/Form";
 import { Container, Button, Row } from "react-bootstrap";
-import Navbar from "../../../components/navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 
 const Signup = () => {
   const [userDetail, setUserDetail] = useState({
-    formBasicEmail: "",
+    formBasicEmail: " ",
     formBasicName: "",
     formBasicPassword: "",
   });
@@ -28,7 +28,7 @@ const Signup = () => {
   return (
     <>
       <Row>
-        <Navbar navBg="#a5c3de" />
+        <Navbar navBg="#a5c3de" col0="#103e5b" col1="#fff" />
       </Row>
       <Container className={signupStyles.container}>
         <Row className={signupStyles.mainRow}>
@@ -50,6 +50,7 @@ const Signup = () => {
                   type="email"
                   placeholder="Enter email"
                   onChange={handleFormChange}
+                  value={userDetail.formBasicEmail}
                 />
               </Form.Group>
               <Form.Group
@@ -59,9 +60,10 @@ const Signup = () => {
                 <Form.Label className={signupStyles.formLabel}>Name</Form.Label>
                 <Form.Control
                   className={signupStyles.formControl}
-                  type="text"
+                  type="name"
                   placeholder="Enter Name"
                   onChange={handleFormChange}
+                  value={userDetail.formBasicName}
                 />
               </Form.Group>
               <Form.Group
@@ -75,13 +77,10 @@ const Signup = () => {
                   className={signupStyles.formControl}
                   type="password"
                   placeholder="Password"
+                  value={userDetail.formBasicPassword}
                 />
               </Form.Group>
-              <Button
-                className={signupStyles.button}
-                variant="primary"
-                type="submit"
-              >
+              <Button className={signupStyles.button} type="submit">
                 Sign In
               </Button>
             </Form>
