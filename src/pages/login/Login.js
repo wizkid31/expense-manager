@@ -29,7 +29,7 @@ const Login = () => {
       <Row>
         <Navbar navBg="#a5c3de" col0="#103e5b" col1="#fff" />
       </Row>
-      <Container className={LoginStyles.container}>
+      <div className={LoginStyles.container}>
         <Row className={LoginStyles.mainRow}>
           <Row className={LoginStyles.alreadyMember}>Not a member? Sign up</Row>
           <Row className={LoginStyles.getStarted}>Log In</Row>
@@ -75,7 +75,7 @@ const Login = () => {
             </Form>
           </Row>
         </Row>
-      </Container>
+      </div>
     </>
   );
 };

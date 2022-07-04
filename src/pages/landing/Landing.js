@@ -10,7 +10,7 @@ import Navbar from "../../components/navbar/Navbar";
 const Landing = () => {
   return (
     <>
-      <Container className={landingStyles.container}>
+      <div className={landingStyles.container}>
         <Row className={landingStyles.navRow}>
           <Navbar dis={true} />
         </Row>
@@ -24,7 +24,7 @@ const Landing = () => {
             </Button>
           </Row>
         </Row>
-      </Container>
+      </div>
     </>
   );
 };

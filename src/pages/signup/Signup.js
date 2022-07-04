@@ -30,7 +30,7 @@ const Signup = () => {
       <Row>
         <Navbar navBg="#a5c3de" col0="#103e5b" col1="#fff" />
       </Row>
-      <Container className={signupStyles.container}>
+      <div className={signupStyles.container}>
         <Row className={signupStyles.mainRow}>
           <Row className={signupStyles.alreadyMember}>
             Already a member? Log in
@@ -86,7 +86,7 @@ const Signup = () => {
             </Form>
           </Row>
         </Row>
-      </Container>
+      </div>
     </>
   );
 };
