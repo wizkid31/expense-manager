@@ -8,12 +8,12 @@ import signupStyles from "./Signup.module.scss";
 
 //bootstrap import
 import Form from "react-bootstrap/Form";
-import { Container, Button, Row } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import Navbar from "../../components/navbar/Navbar";
 
 const Signup = () => {
   const [userDetail, setUserDetail] = useState({
-    formBasicEmail: " ",
+    formBasicEmail: "",
     formBasicName: "",
     formBasicPassword: "",
   });
@@ -47,10 +47,11 @@ const Signup = () => {
                 </Form.Label>
                 <Form.Control
                   className={signupStyles.formControl}
+                  name="formBasicEmail"
                   type="email"
                   placeholder="Enter email"
-                  onChange={handleFormChange}
                   value={userDetail.formBasicEmail}
+                  onChange={handleFormChange}
                 />
               </Form.Group>
               <Form.Group
@@ -60,10 +61,11 @@ const Signup = () => {
                 <Form.Label className={signupStyles.formLabel}>Name</Form.Label>
                 <Form.Control
                   className={signupStyles.formControl}
+                  name="formBasicName"
                   type="name"
                   placeholder="Enter Name"
-                  onChange={handleFormChange}
                   value={userDetail.formBasicName}
+                  onChange={handleFormChange}
                 />
               </Form.Group>
               <Form.Group
@@ -75,9 +77,11 @@ const Signup = () => {
                 </Form.Label>
                 <Form.Control
                   className={signupStyles.formControl}
+                  name="formBasicPassword"
                   type="password"
                   placeholder="Password"
                   value={userDetail.formBasicPassword}
+                  onChange={handleFormChange}
                 />
               </Form.Group>
               <Button className={signupStyles.button} type="submit">

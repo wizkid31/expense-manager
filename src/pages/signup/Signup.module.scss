@@ -10,6 +10,8 @@
   center center/cover no-repeat;
   height: 90vh;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
   .mainRow {
     width: 50%;
     float: right;
