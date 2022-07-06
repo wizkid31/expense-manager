@@ -8,7 +8,9 @@ import LoginStyles from "./Login.module.scss";
 
 //bootstrap import
 import Form from "react-bootstrap/Form";
-import { Container, Button, Row } from "react-bootstrap";
+import {Button, Row } from "react-bootstrap";
+
+//componens import
 import Navbar from "../../components/navbar/Navbar";
 
 const Login = () => {

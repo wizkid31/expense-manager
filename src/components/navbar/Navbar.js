@@ -9,7 +9,7 @@ import navStyles from "./Navbar.module.scss";
 //mui icons
 import { Timeline } from "@mui/icons-material";
 
-const Navbar = ({ navBg, col0, col1, dis,show}) => {
+const Navbar = ({ navBg, col0, col1, dis, show }) => {
   return (
     <>
       <Row
