@@ -41,6 +41,9 @@ const Navbar = ({ navBg, col0, col1, dis, show }) => {
             </Col>
           </>
         )}
+        {show === true && (
+          <></>
+        )}
       </Row>
     </>
   );

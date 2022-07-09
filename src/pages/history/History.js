@@ -24,18 +24,18 @@ const History = () => {
   };
 
   const rows = [
-    createData("Movies", "₹ 1200",),
-    createData("Movies", "₹ 1200",),
-    createData("Movies", "₹ 1200",),
-    createData("Movies", "₹ 1200",),
-    createData("Movies", "₹ 1200",),
-    createData("Movies", "₹ 1200",),
+    createData("Movies", "₹ 1200"),
+    createData("Movies", "₹ 1200"),
+    createData("Movies", "₹ 1200"),
+    createData("Movies", "₹ 1200"),
+    createData("Movies", "₹ 1200"),
+    createData("Movies", "₹ 1200"),
   ];
 
   return (
     <div className={historyStyle.container}>
       <Row className={historyStyle.navRow}>
-        <Navbar />
+        <Navbar show={true}/>
       </Row>
       <Row className={historyStyle.contentRow}>
         <Row className={historyStyle.currentBalanceRow}>
@@ -45,7 +45,7 @@ const History = () => {
         </Row>
         <Row className={historyStyle.tableRow}>
           <div className={historyStyle.monthRow}>31 May 2022</div>
-          <TableContainer component={Paper} sx={{ width: "50%", mx:"auto"}}>
+          <TableContainer component={Paper} sx={{ width: "50%", mx: "auto" }}>
             <Table
               sx={{
                 minWidth: 650,

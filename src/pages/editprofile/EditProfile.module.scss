@@ -1,8 +1,10 @@
 .container {
   background-color: #f5f5f5;
+  height: 100vh;
   .contentRow {
-    margin: 2rem 3rem;
     border-radius: 10px;
+    width: 60%;
+    margin: 5rem auto;
     .headingRow {
       padding: 2rem 3rem 0rem 3rem;
       color: #103e5b;
@@ -11,23 +13,44 @@
     }
     .editRow {
       padding: 0rem 3rem 2rem 3rem;
-      .editPhotoCol {
+      font-family: "Poppins-Medium";
+      color: #103e5b;
+      .editDetailCol {
         padding: 2rem 2rem;
         box-shadow: 0px 5px 30px #0000000d;
         border-radius: 10px;
         background-color: #fff;
-        img {
-          height: 10rem;
-          width: 10rem;
-          margin: auto;
-          border-radius: 50%;
+        .currentBalance {
+          text-align: right;
+          font-size: 1.2rem;
+          font-family: "Poppins-Bold";
         }
-      }
-      .editDetailCol{
-        padding: 2rem 2rem;
-        box-shadow: 0px 5px 30px #0000000d;
-        border-radius: 10px;
-        background-color: #fff;
+        .formRow {
+          .form {
+            .formGroup {
+              display: flex;
+              margin-bottom: 2rem;
+              .formLabel {
+                flex: 1;
+              }
+              .formControl {
+                background-color: #dcdcdc;
+                border: none;
+                flex: 3;
+                font-size: 0.9rem;
+                border-radius: 10px;
+                &:focus {
+                  box-shadow: none;
+                  border: none;
+                }
+              }
+            }
+          }
+        }
+        .since {
+          text-align: center;
+          font-size: 0.8rem;
+        }
       }
     }
   }

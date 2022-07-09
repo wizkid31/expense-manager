@@ -17,42 +17,24 @@ import Navbar from "../../components/navbar/Navbar";
 import editProfileStyles from "../editprofile/EditProfile.module.scss";
 
 const EditProfile = () => {
-  //photo state/setState
-  const [photo, setPhoto] = useState(circle);
 
   //editForm state/setState
   const [profileDetails, setProfileDetails] = useState({
-    name: "",
-    email: "",
+    name: "Janhavi Singh",
+    email: "janhavisingh725@gmail.com",
+    since: 2045
   });
-
-  //edit Form state/setState
-  const handleFormChange = (e, value) => {
-    setProfileDetails({
-      ...profileDetails,
-      [e.target.name]: value || e.target.value,
-    });
-  };
-
-  //photo handleChange
-  const handleChange = (e) => {
-    setPhoto(URL.createObjectURL(e.target.files[0]));
-  };
 
   return (
     <div className={editProfileStyles.container}>
       <Row className={editProfileStyles.navRow}>
-        <Navbar />
+        <Navbar show={true} />
       </Row>
       <Row className={editProfileStyles.contentRow}>
         <Row className={editProfileStyles.headingRow}>
           <p>My Profile</p>
         </Row>
         <Row className={editProfileStyles.editRow}>
-          {/*// <Col className={editProfileStyles.editPhotoCol} xl={4}>
-          //   <img src={photo} />
-          //   <input type="file" accept="" onChange={handleChange} />
-  // </Col>*/}
           <Col className={editProfileStyles.editDetailCol}>
             <Row className={editProfileStyles.currentBalance}>
               <p> Current Balance: ₹30000</p>
@@ -64,13 +46,12 @@ const EditProfile = () => {
                   controlId="name"
                 >
                   <Form.Label className={editProfileStyles.formLabel}>
-                    Name of the user
+                    Name of the user:
                   </Form.Label>
                   <Form.Control
                     className={editProfileStyles.formControl}
                     type="text"
-                    placeholder="Name"
-                    onChange={handleFormChange}
+                    disabled
                     value={profileDetails.name}
                     name="name"
                   />
@@ -80,28 +61,19 @@ const EditProfile = () => {
                   controlId="formPassword"
                 >
                   <Form.Label className={editProfileStyles.formLabel}>
-                    E-mail Address
+                    E-mail Address:
                   </Form.Label>
                   <Form.Control
                     className={editProfileStyles.formControl}
                     type="email"
-                    placeholder="E-mail address"
-                    onChange={handleFormChange}
+                    disabled
                     value={profileDetails.email}
-                    name="email"
                   />
                 </Form.Group>
-                <Button
-                  className={editProfileStyles.button}
-                  variant="primary"
-                  type="submit"
-                >
-                  Log In
-                </Button>
               </Form>
             </Row>
             <Row className={editProfileStyles.since}>
-              <p>Member Since: 2045</p>
+              <p>Member since {profileDetails.since}.</p>
             </Row>
           </Col>
         </Row>
