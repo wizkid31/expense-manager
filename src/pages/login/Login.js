@@ -3,22 +3,44 @@ import React from "react";
 //react hooks
 import { useState } from "react";
 
+//react-router hooks;
+import { useNavigate } from "react-router";
+import { useLocation } from "react-router";
+
 //sass imort
 import LoginStyles from "./Login.module.scss";
 
 //bootstrap import
 import Form from "react-bootstrap/Form";
-import {Button, Row } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 
 //componens import
 import Navbar from "../../components/navbar/Navbar";
 
+//redux hooks import
+import { useSelector } from "react-redux/es/exports";
+import { useDispatch } from "react-redux/es/exports";
+
+//slices import
+import { loginUser } from "../../store/features/auth/userSlice";
+import { selectIsLoggedIn } from "../../store/features/auth/userSlice";
+
 const Login = () => {
+  //loginForm state,setState
   const [userDetails, setUserDetails] = useState({
-    formEmail: "",
-    formPassword: "",
+    username: "",
+    password: "",
   });
 
+  //redux dispatch and selector
+  const dispatch = useDispatch();
+  const isLoggedInStatus = useSelector(selectIsLoggedIn);
+
+  //navigate hook
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  //onChange
   const handleFormChange = (e, value) => {
     setUserDetails({
       ...userDetails,
@@ -26,6 +48,52 @@ const Login = () => {
     });
   };
 
+  //submitForm function
+  // const submitForm = async (data) => {
+  //   const res = await dispatch(signUpUser(data));
+  //   setUserDetails({
+  //     username: "",
+  //     password: "",
+  //   });
+  //   console.log(res);
+  //   navigate("/login");
+  //   return res;
+  // };
+  React.useEffect(() => {
+    if (isLoggedInStatus) {
+      navigate("/");
+    }
+    if (location.hash) {
+      let elem = document.getElementById(location.hash.slice(1));
+      if (elem) {
+        elem.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  }, [location, isLoggedInStatus]);
+
+  const login = async () => {
+    let response = await dispatch(
+      loginUser({
+        username: userDetails.username,
+        password: userDetails.password,
+      })
+    ).unwrap();
+    console.log(response);
+    return response;
+  };
+
+  const handleSubmitClick = async (e) => {
+    e.preventDefault();
+    let temp = { ...userDetails };
+    const validate = Object.values(temp).every(Boolean);
+    if (validate) {
+      let resData = await login();
+      console.log(resData);
+      navigate("/");
+    }
+  };
   return (
     <>
       <Row>
@@ -36,25 +104,26 @@ const Login = () => {
           <Row className={LoginStyles.alreadyMember}>Not a member? Sign up</Row>
           <Row className={LoginStyles.getStarted}>Log In</Row>
           <Row className={LoginStyles.formRow}>
-            <Form className={LoginStyles.form}>
+            <Form className={LoginStyles.form} onSubmit={handleSubmitClick}>
               <Form.Group
                 className={LoginStyles.formGroup}
-                controlId="formEmail"
+                controlId="username"
               >
                 <Form.Label className={LoginStyles.formLabel}>
-                  Email address
+                  Username
                 </Form.Label>
                 <Form.Control
                   className={LoginStyles.formControl}
-                  type="email"
+                  name="username"
+                  type="text"
                   placeholder="Enter email"
                   onChange={handleFormChange}
-                  value={userDetails.formEmail}
+                  value={userDetails.username}
                 />
               </Form.Group>
               <Form.Group
                 className={LoginStyles.formGroup}
-                controlId="formPassword"
+                controlId="password"
               >
                 <Form.Label className={LoginStyles.formLabel}>
                   Password
@@ -64,7 +133,8 @@ const Login = () => {
                   type="password"
                   placeholder="Password"
                   onChange={handleFormChange}
-                  value={userDetails.formPassword}
+                  value={userDetails.password}
+                  name="password"
                 />
               </Form.Group>
               <Button

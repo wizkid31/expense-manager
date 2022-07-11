@@ -1,14 +1,14 @@
 import axios from "axios";
-baseUrl="https://expense-manager-backend-api.herokuapp.com/auth"; 
+const baseUrl="https://expense-manager-backend-api.herokuapp.com/auth/"; 
 
-class AdminAuthService{
+class userAuthService{
     login=async(data)=>{
         const {username,password} =data;
         let res=await axios({
             method: "post",
             url: baseUrl+"login/",
             headers: {
-                "content-type":"application/json;charset=utf-8",
+                "content-type":"application/json",
             },
             data:{
                 username,password,
@@ -16,14 +16,13 @@ class AdminAuthService{
         });
         return res.data;
     }
-
     register=async(data)=>{
-        const {first_name,email,username,password} =data;
+        const {first_name,email,username,password} = data;
         let res=await axios({
             method: "post",
             url: baseUrl+"register/",
             headers: {
-                "content-type":"application/json;charset=utf-8",
+                "content-type":"application/json",
             },
             data:{
                 first_name,email,username,password,
@@ -37,7 +36,7 @@ class AdminAuthService{
             method: "get",
             url:baseUrl+"profile/",
             headers: {
-                "content-type":"application/json;charset=utf-8",
+                "content-type":"application/json",
                 Authorization: token,
             },
         });
@@ -45,4 +44,4 @@ class AdminAuthService{
     }; 
 }
 
-export default new AdminAuthService();
+export default new userAuthService();
