@@ -32,12 +32,14 @@ class userAuthService{
     }
 
     profile=async(token) => {
+        console.log("Token "+token)
         let {data}=await axios({
             method: "get",
             url:baseUrl+"profile/",
             headers: {
-                "content-type":"application/json",
-                Authorization: token,
+                "Authorization": "Token "+token,
+                "Content-type":"application/json; charset=UTF-8",
+                
             },
         });
         return data;

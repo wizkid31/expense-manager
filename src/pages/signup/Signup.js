@@ -57,6 +57,8 @@ const Signup = () => {
     return res;
   };
 
+  const tologin=()=>navigate("/login")
+
   //onSubmit function
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,8 +81,8 @@ const Signup = () => {
       </Row>
       <div className={signupStyles.container}>
         <Row className={signupStyles.mainRow}>
-          <Row className={signupStyles.alreadyMember}>
-            Already a member? Log in
+          <Row className={signupStyles.alreadyMember} style={{ cursor:"pointer"}} onClick={tologin}>
+            Already a member?Log in
           </Row>
           <Row className={signupStyles.getStarted}>Let's get started</Row>
           <Row className={signupStyles.formRow}>

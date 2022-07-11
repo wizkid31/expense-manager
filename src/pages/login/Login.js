@@ -84,6 +84,8 @@ const Login = () => {
     return response;
   };
 
+  const tosignup=()=> navigate("/signup")
+
   const handleSubmitClick = async (e) => {
     e.preventDefault();
     let temp = { ...userDetails };
@@ -91,7 +93,7 @@ const Login = () => {
     if (validate) {
       let resData = await login();
       console.log(resData);
-      navigate("/");
+      navigate("/budget");
     }
   };
   return (
@@ -101,7 +103,9 @@ const Login = () => {
       </Row>
       <div className={LoginStyles.container}>
         <Row className={LoginStyles.mainRow}>
-          <Row className={LoginStyles.alreadyMember}>Not a member? Sign up</Row>
+          <Row className={LoginStyles.alreadyMember} style={{ cursor:"pointer"}} onClick={tosignup}>
+            Not a member?Sign up
+          </Row>
           <Row className={LoginStyles.getStarted}>Log In</Row>
           <Row className={LoginStyles.formRow}>
             <Form className={LoginStyles.form} onSubmit={handleSubmitClick}>
