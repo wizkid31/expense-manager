@@ -1,8 +1,8 @@
 import axios from "axios";
-baseUrl="https://expense-manager-backend-api.herokuapp.com/expense/"; 
+baseUrl="https://expense-manager-backend-api.herokuapp.com/saving/"; 
 
-class Expenses{
-    createExpense=async(data)=>{
+class Savings{
+    createSaving=async(data)=>{
         const {title,created,amount} = data;
         let res=await axios({
             method: "post",
@@ -18,7 +18,7 @@ class Expenses{
         return res.data;
     }
 
-    getExpense=async(id,token)=>{
+    getSaving=async(id,token)=>{
         //const {first_name,email,username,password} =data;
         let {data}=await axios({
             method: "get",
@@ -31,7 +31,7 @@ class Expenses{
         return data;
     }
 
-    editExpense=async(id,token,data) => {
+    editSaving=async(id,token,data) => {
         const {title,created,amount} =data;
         let res=await axios({
             method: "put",
@@ -46,7 +46,7 @@ class Expenses{
         });
         return res.data;
     }; 
-    delExpense=async(id,token)=>{
+    delSaving=async(id,token)=>{
         //const {first_name,email,username,password} =data;
         await axios({
             method: "delete",
@@ -58,11 +58,11 @@ class Expenses{
         });
         return;
     }
-    getAllExpense=async(token)=>{
+    getAllSavings=async(token)=>{
         //const {first_name,email,username,password} =data;
         let data=await axios({
             method: "get",
-            url: "https://expense-manager-backend-api.herokuapp.com/expenses/",
+            url: "https://expense-manager-backend-api.herokuapp.com/savings/",
             headers: {
                 "content-type":"application/json;charset=utf-8",
                 "Authorization": "Token "+token,
@@ -72,4 +72,4 @@ class Expenses{
     }
 }
 
-export default new Expenses();
+export default new Savings();

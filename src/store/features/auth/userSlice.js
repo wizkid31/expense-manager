@@ -36,12 +36,13 @@ const userSlice = createSlice({
     },
     [signUpUser.fulfilled]: (state, action) => {
       console.log(action.payload);
+      localStorage.setItem("token", action.payload.token);
       state.adminData = action.payload;
       console.log(state.adminData)
     },
     [checkLoginStatus.fulfilled]: (state, action) => {
       // if (action.payload.statusCode === 200) {
-        localStorage.setItem("token", action.payload.token);
+        //localStorage.setItem("token", action.payload.token);
         state.isLoggedIn = true;
         state.adminData = action.payload.data;
         // state.status = "fulfilled";
