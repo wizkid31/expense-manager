@@ -5,6 +5,7 @@ import { useState } from "react";
 
 //react-router hooks
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux";
@@ -57,7 +58,7 @@ const Signup = () => {
     return res;
   };
 
-  const tologin=()=>navigate("/login")
+  const tologin = () => navigate("/login");
 
   //onSubmit function
   const handleSubmit = (e) => {
@@ -81,8 +82,15 @@ const Signup = () => {
       </Row>
       <div className={signupStyles.container}>
         <Row className={signupStyles.mainRow}>
-          <Row className={signupStyles.alreadyMember} style={{ cursor:"pointer"}} onClick={tologin}>
-            Already a member?Log in
+          <Row
+            className={signupStyles.alreadyMember}
+            style={{ cursor: "pointer" }}
+            onClick={tologin}
+          >
+            Already a member?
+            <Link to="/login">
+              Log in
+            </Link>
           </Row>
           <Row className={signupStyles.getStarted}>Let's get started</Row>
           <Row className={signupStyles.formRow}>

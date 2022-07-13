@@ -22,8 +22,7 @@ import { useSelector } from "react-redux/es/exports";
 import { useDispatch } from "react-redux/es/exports";
 
 //slices import
-import { loginUser } from "../../store/features/auth/userSlice";
-import { selectIsLoggedIn } from "../../store/features/auth/userSlice";
+import { loggedInStatus, loginUser } from "../../store/features/auth/userSlice";
 
 const Login = () => {
   //loginForm state,setState
@@ -34,7 +33,7 @@ const Login = () => {
 
   //redux dispatch and selector
   const dispatch = useDispatch();
-  const isLoggedInStatus = useSelector(selectIsLoggedIn);
+  const isLoggedInStatus = useSelector(loggedInStatus);
 
   //navigate hook
   const navigate = useNavigate();
@@ -47,18 +46,6 @@ const Login = () => {
       [e.target.name]: value || e.target.value,
     });
   };
-
-  //submitForm function
-  // const submitForm = async (data) => {
-  //   const res = await dispatch(signUpUser(data));
-  //   setUserDetails({
-  //     username: "",
-  //     password: "",
-  //   });
-  //   console.log(res);
-  //   navigate("/login");
-  //   return res;
-  // };
   React.useEffect(() => {
     if (isLoggedInStatus) {
       navigate("/");
@@ -93,7 +80,7 @@ const Login = () => {
     if (validate) {
       let resData = await login();
       console.log(resData);
-      navigate("/budget");
+      navigate("/");
     }
   };
   return (

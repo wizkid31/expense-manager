@@ -12,7 +12,7 @@ import { BrowserRouter } from "react-router-dom";
 
 //font import
 import "./components/font/font.module.scss";
-
+//redux
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 

@@ -35,7 +35,7 @@ const History = () => {
   return (
     <div className={historyStyle.container}>
       <Row className={historyStyle.navRow}>
-        <Navbar show={true}/>
+        <Navbar dis={true} />
       </Row>
       <Row className={historyStyle.contentRow}>
         <Row className={historyStyle.currentBalanceRow}>

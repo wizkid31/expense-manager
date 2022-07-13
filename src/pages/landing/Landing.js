@@ -10,13 +10,21 @@ import { useNavigate } from "react-router";
 import { Container, Row, Button } from "react-bootstrap";
 import Navbar from "../../components/navbar/Navbar";
 
+//redux
+import { useSelector } from "react-redux";
+import { loggedInStatus } from "../../store/features/auth/userSlice";
+
 const Landing = () => {
   const navigate = useNavigate();
 
+  const check = useSelector(loggedInStatus);
+
   const toSignup = () => {
     navigate("/signup");
-  }
-
+  };
+  const toBudget = () => {
+    navigate("/budget");
+  };
   return (
     <>
       <div className={landingStyles.container}>
@@ -28,11 +36,15 @@ const Landing = () => {
             Keep track of your Expenses in a Smart and easy way
           </p>
           <Row className={landingStyles.joinNowRow}>
-            <Button className={landingStyles.button}
-              onClick={toSignup}
-              type="submit">
-              Join Now
-            </Button>
+            {check ? (
+              <Button className={landingStyles.button} onClick={toBudget}>
+                Show Budget
+              </Button>
+            ) : (
+              <Button className={landingStyles.button} onClick={toSignup}>
+                Join Now
+              </Button>
+            )}
           </Row>
         </Row>
       </div>

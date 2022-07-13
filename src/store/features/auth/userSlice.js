@@ -6,8 +6,8 @@ export const signUpUser = createAsyncThunk("user/signUpUser", async (data) => {
   return response;
 });
 
-export const checkLoginStatus = createAsyncThunk(
-  "user/checkLoginStatus",
+export const getUserProfile = createAsyncThunk(
+  "user/getUserProfile",
   async () => {
     const response = await userAuthService.profile(
       localStorage.getItem("token")
@@ -24,11 +24,29 @@ export const loginUser = createAsyncThunk("user/User", async (data) => {
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    isLoggedIn: false,
     data: {},
     error: {},
+    loginUserData: {},
+    loggedInStatus: false,
+    userCredentials: {},
   },
-  reducer: {},
+  reducers: {
+    logout: (state, action) => {
+      localStorage.setItem("token", "");
+      state.loggedInStatus = false;
+      state.loginUserData = {};
+      state.userCredentials = {};
+    },
+    checkLogin: (state, action) => {
+      const accessTokenObj = localStorage.getItem("token");
+      if (accessTokenObj === "") {
+        state.loggedInStatus = false;
+      } else {
+        state.loggedInStatus = true;
+        state.loginUserData = action.payload;
+      }
+    },
+  },
   extraReducers: {
     [signUpUser.rejected]: (state, action) => {
       console.log(action);
@@ -36,38 +54,29 @@ const userSlice = createSlice({
     },
     [signUpUser.fulfilled]: (state, action) => {
       console.log(action.payload);
-      state.adminData = action.payload;
-      console.log(state.adminData)
-    },
-    [checkLoginStatus.fulfilled]: (state, action) => {
-      // if (action.payload.statusCode === 200) {
-        localStorage.setItem("token", action.payload.token);
-        state.isLoggedIn = true;
-        state.adminData = action.payload.data;
-        // state.status = "fulfilled";
-      // } else {
-      //   localStorage.setItem("token", "");
-      //   state.isLoggedIn = false;
-      //   state.adminData = {};
-      //   state.status = "error";
-      // }
+      state.data = action.payload;
     },
     [loginUser.fulfilled]: (state, action) => {
-      // if (action.payload.statusCode === 200) {
+      console.log(action);
       localStorage.setItem("token", action.payload.token);
-      // state.status = "fulfilled";
-      state.adminData = action.payload;
-      // } else {
-      //   state.status = "error";
-      //   localStorage.setItem("token", "");
-      //   state.isLoggedIn = false;
-      //   state.adminData = {};
-      // }
+      state.loginUserData = action.payload;
+      state.loggedInStatus = true;
+    },
+    [loginUser.fulfilled]: (state, action) => {
+      console.log(action);
+      localStorage.setItem("token", action.payload.token);
+      state.loggedInStatus = true;
+    },
+    [getUserProfile.fulfilled]: (state, action) => {
+      state.userCredentials = action.payload;
+      console.log(state.userCredentials);
     },
   },
 });
 
-export const selectAdmin = (state) => state.user.data;
-export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
+export const selectUser = (state) => state.user.data;
+export const { logout, checkLogin } = userSlice.actions;
+export const selectUserCredentials = (state) => state.user.userCredentials;
+export const loggedInStatus = (state) => state.user.loggedInStatus;
 
 export default userSlice.reducer;

@@ -29,7 +29,7 @@ const Budget = () => {
     <>
       <div className={budgetStyles.container}>
         <Row className={budgetStyles.navRow}>
-          <Navbar show={true} />
+          <Navbar dis={true} />
         </Row>
         <Row className={budgetStyles.contentRow}>
           <Col className={budgetStyles.expenseCol}>

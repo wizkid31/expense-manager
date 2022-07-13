@@ -1,14 +1,10 @@
 import React from "react";
 
-//img import
-import circle from "../../resources/images/circle.png";
-
 //hooks import
 import { useState, useEffect } from "react";
 
 //bootstrap import
-import { Row, Col, Button } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import { Row, Col } from "react-bootstrap";
 
 //component import
 import Navbar from "../../components/navbar/Navbar";
@@ -16,23 +12,56 @@ import Navbar from "../../components/navbar/Navbar";
 //scss import
 import editProfileStyles from "../editprofile/EditProfile.module.scss";
 
-const EditProfile = () => {
+//redux hooks
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUserProfile,
+  selectUserCredentials,
+} from "../../store/features/auth/userSlice";
 
+const EditProfile = () => {
   //editForm state/setState
   const [profileDetails, setProfileDetails] = useState({
     name: "Janhavi Singh",
+    username: "janhavi",
     email: "janhavisingh725@gmail.com",
-    since: 2045
+    since: 2045,
   });
 
+  const dispatch = useDispatch();
+  const credentials = useSelector(selectUserCredentials);
+  const getUser = async () => {
+    const res = await dispatch(getUserProfile());
+    return res;
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    if (getUser) {
+      if (credentials.email) {
+        setProfileDetails((prev) => {
+          prev = { ...credentials };
+          return {
+            name: prev.first_name,
+            username: prev.username,
+            email: prev.email,
+            since: prev.date_joined.substring(0, 4),
+          };
+        });
+      }
+    }
+  }, [credentials]);
+
   return (
-    <div className={editProfileStyles.container}>
+    <Col className={editProfileStyles.container}>
       <Row className={editProfileStyles.navRow}>
-        <Navbar show={true} />
+        <Navbar dis={true} />
       </Row>
       <Row className={editProfileStyles.contentRow}>
         <Row className={editProfileStyles.headingRow}>
-          <p>My Profile</p>
+          <p>My profile</p>
         </Row>
         <Row className={editProfileStyles.editRow}>
           <Col className={editProfileStyles.editDetailCol}>
@@ -40,37 +69,28 @@ const EditProfile = () => {
               <p> Current Balance: ₹30000</p>
             </Row>
             <Row className={editProfileStyles.formRow}>
-              <Form className={editProfileStyles.form}>
-                <Form.Group
-                  className={editProfileStyles.formGroup}
-                  controlId="name"
-                >
-                  <Form.Label className={editProfileStyles.formLabel}>
-                    Name of the user:
-                  </Form.Label>
-                  <Form.Control
-                    className={editProfileStyles.formControl}
-                    type="text"
-                    disabled
-                    value={profileDetails.name}
-                    name="name"
-                  />
-                </Form.Group>
-                <Form.Group
-                  className={editProfileStyles.formGroup}
-                  controlId="formPassword"
-                >
-                  <Form.Label className={editProfileStyles.formLabel}>
+              <Row className={editProfileStyles.form}>
+                <Row className={editProfileStyles.formGroup}>
+                  <Col className={editProfileStyles.formLabel}>Name:</Col>
+                  <Col className={editProfileStyles.formControl}>
+                    {profileDetails.name}
+                  </Col>
+                </Row>
+                <Row className={editProfileStyles.formGroup}>
+                  <Col className={editProfileStyles.formLabel}>Userame:</Col>
+                  <Col className={editProfileStyles.formControl}>
+                    {profileDetails.username}
+                  </Col>
+                </Row>
+                <Row className={editProfileStyles.formGroup}>
+                  <Col className={editProfileStyles.formLabel}>
                     E-mail Address:
-                  </Form.Label>
-                  <Form.Control
-                    className={editProfileStyles.formControl}
-                    type="email"
-                    disabled
-                    value={profileDetails.email}
-                  />
-                </Form.Group>
-              </Form>
+                  </Col>
+                  <Col className={editProfileStyles.formControl}>
+                    {profileDetails.email}
+                  </Col>
+                </Row>
+              </Row>
             </Row>
             <Row className={editProfileStyles.since}>
               <p>Member since {profileDetails.since}.</p>
@@ -78,7 +98,7 @@ const EditProfile = () => {
           </Col>
         </Row>
       </Row>
-    </div>
+    </Col>
   );
 };
 
