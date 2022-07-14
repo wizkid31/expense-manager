@@ -22,7 +22,7 @@ import { useSelector } from "react-redux/es/exports";
 import { useDispatch } from "react-redux/es/exports";
 
 //slices import
-import { loggedInStatus, loginUser } from "../../store/features/auth/userSlice";
+import { loggedInStatus, loginUser } from "../../storee/features/auth/userSlice";
 
 const Login = () => {
   //loginForm state,setState
@@ -33,7 +33,6 @@ const Login = () => {
 
   //redux dispatch and selector
   const dispatch = useDispatch();
-  const isLoggedInStatus = useSelector(loggedInStatus);
 
   //navigate hook
   const navigate = useNavigate();
@@ -47,9 +46,6 @@ const Login = () => {
     });
   };
   React.useEffect(() => {
-    if (isLoggedInStatus) {
-      navigate("/");
-    }
     if (location.hash) {
       let elem = document.getElementById(location.hash.slice(1));
       if (elem) {
@@ -58,7 +54,7 @@ const Login = () => {
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
-  }, [location, isLoggedInStatus]);
+  }, [location]);
 
   const login = async () => {
     let response = await dispatch(
@@ -66,7 +62,7 @@ const Login = () => {
         username: userDetails.username,
         password: userDetails.password,
       })
-    ).unwrap();
+    );
     console.log(response);
     return response;
   };

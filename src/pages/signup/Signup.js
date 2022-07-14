@@ -19,7 +19,7 @@ import { Button, Row } from "react-bootstrap";
 import Navbar from "../../components/navbar/Navbar";
 
 //slice component import
-import { signUpUser } from "../../store/features/auth/userSlice";
+import { signUpUser } from "../../storee/features/auth/userSlice";
 
 const Signup = () => {
   //userDetail state/setState

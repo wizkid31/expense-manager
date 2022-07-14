@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getUserProfile,
   selectUserCredentials,
-} from "../../store/features/auth/userSlice";
+} from "../../storee/features/auth/userSlice";
 
 const EditProfile = () => {
   //editForm state/setState

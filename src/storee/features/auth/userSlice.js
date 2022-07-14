@@ -24,10 +24,10 @@ export const loginUser = createAsyncThunk("user/User", async (data) => {
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    loggedInStatus: false,
     data: {},
     error: {},
     loginUserData: {},
-    loggedInStatus: false,
     userCredentials: {},
   },
   reducers: {
@@ -38,12 +38,11 @@ const userSlice = createSlice({
       state.userCredentials = {};
     },
     checkLogin: (state, action) => {
-      const accessTokenObj = localStorage.getItem("token");
-      if (accessTokenObj === "") {
+      const accesObjToken = localStorage.getItem("token");
+      if (accesObjToken === "") {
         state.loggedInStatus = false;
       } else {
         state.loggedInStatus = true;
-        state.loginUserData = action.payload;
       }
     },
   },
@@ -54,29 +53,23 @@ const userSlice = createSlice({
     },
     [signUpUser.fulfilled]: (state, action) => {
       console.log(action.payload);
+      localStorage.setItem("token", action.payload.token);
       state.data = action.payload;
+      console.log(state.data);
     },
     [loginUser.fulfilled]: (state, action) => {
-      console.log(action);
       localStorage.setItem("token", action.payload.token);
+      state.isLoggedIn = true;
       state.loginUserData = action.payload;
-      state.loggedInStatus = true;
-    },
-    [loginUser.fulfilled]: (state, action) => {
-      console.log(action);
-      localStorage.setItem("token", action.payload.token);
-      state.loggedInStatus = true;
     },
     [getUserProfile.fulfilled]: (state, action) => {
-      state.userCredentials = action.payload;
-      console.log(state.userCredentials);
+      state.selectUserCredentials = action.payload;
     },
   },
 });
 
-export const selectUser = (state) => state.user.data;
-export const { logout, checkLogin } = userSlice.actions;
-export const selectUserCredentials = (state) => state.user.userCredentials;
 export const loggedInStatus = (state) => state.user.loggedInStatus;
+export const selectUserCredentials = (state) => state.user.userCredentials;
+export const { logout, checkLogin } = userSlice.actions;
 
 export default userSlice.reducer;

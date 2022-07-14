@@ -25,8 +25,8 @@ import {
   loggedInStatus,
   getUserProfile,
   selectUserCredentials,
-} from "../../store/features/auth/userSlice";
-import { logout } from "../../store/features/auth/userSlice";
+} from "../../storee/features/auth/userSlice";
+import { logout } from "../../storee/features/auth/userSlice";
 
 const Navbar = ({ navBg, col0, col1, dis, show }) => {
   const [userInitial, setUserInitial] = useState({
@@ -50,27 +50,27 @@ const Navbar = ({ navBg, col0, col1, dis, show }) => {
     dispatch(logout());
     navigate("/login");
   };
+    const getUser = async () => {
+      const res = await dispatch(getUserProfile());
+      console.log(res);
+      return res;
+    };
+    useEffect(() => {
+      getUser();
+    }, []);
 
-  const getUser = async () => {
-    const res = await dispatch(getUserProfile());
-    return res;
-  };
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  useEffect(() => {
-    if (getUser) {
-      if (credentials.username) {
-        setUserInitial((prev) => {
-          prev = { ...credentials };
-          return {
-            initial: prev.username[0].toUpperCase(),
-          };
-        });
+    useEffect(() => {
+      if (getUser) {
+        if (credentials.username) {
+          setUserInitial((prev) => {
+            prev = { ...credentials };
+            return {
+              initial: prev.username[0].toUpperCase(),
+            };
+          });
+        }
       }
-    }
-  }, [credentials]);
+    }, [credentials]);
 
   return (
     <>

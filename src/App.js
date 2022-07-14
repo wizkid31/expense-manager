@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 
 //redux
 import { useDispatch } from "react-redux";
-import { checkLogin, getUserProfile } from "./store/features/auth/userSlice";
+import { checkLogin } from "./storee/features/auth/userSlice"
 
 //component import
 import Signup from "./pages/signup/Signup";
@@ -17,7 +17,7 @@ import EditProfile from "./pages/editprofile/EditProfile";
 
 const App = () => {
   const dispatch = useDispatch();
-  console.log(dispatch(checkLogin()));
+  dispatch(checkLogin());
   return (
     <div className={AppStyle.App}>
       <Routes>

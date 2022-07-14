@@ -12,7 +12,7 @@ import Navbar from "../../components/navbar/Navbar";
 
 //redux
 import { useSelector } from "react-redux";
-import { loggedInStatus } from "../../store/features/auth/userSlice";
+import { loggedInStatus } from "../../storee/features/auth/userSlice";
 
 const Landing = () => {
   const navigate = useNavigate();
